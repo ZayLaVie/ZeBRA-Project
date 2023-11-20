@@ -7,15 +7,19 @@ from src.models import user, db
 app = Flask(__name__)
 
 # Configure database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://***************************'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql:// ' # create user_account_schema in your MySQL local database and add info here. REMOVE BEFORE COMMIT!!!
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 db = SQLAlchemy(app)
 
 bcrypt = Bcrypt(app)
 
-@app.get('/')
-def index():
+@app.get('/login')
+def login():
     return render_template('login.html')
+
+@app.get('/')
+def index(): 
+    return render_template('index.html')
 
 @app.get('/users/new')
 def create_account_form():
@@ -54,7 +58,7 @@ def create_account():
 
         try:
             db.session.commit()
-            return redirect(url_for('index'))  # Redirect to login page after successful registration
+            return redirect(url_for('index.html'))  # Redirect to login page after successful registration
         except IntegrityError:
             db.session.rollback()
             return render_template('create_account_form.html', error="Email already exists. Please choose another.")
