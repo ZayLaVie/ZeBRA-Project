@@ -1,0 +1,82 @@
+body, h1, h2, h3, p, label{
+    margin: 0;
+    padding: 0;
+} 
+
+body{
+    font-family: 'Verdana', sans-serif;
+    background-color: #d6d5d5;
+}
+
+nav {
+    display: inline-block;
+}
+
+header {
+    background: rgb(6, 73, 6);
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.form-element {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 4px;
+    color: #222;
+}
+
+input {
+    font-size: small;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #333333;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #222222;
+}
+
+p{
+    text-align: center;
+    margin-top: 10px;
+    color: #555;
+}
+
+a{
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
