@@ -7,7 +7,7 @@ from src.models import user, db
 app = Flask(__name__)
 
 # Configure database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:nemo8739@localhost:3306/user_accounts_schema' # create user_account_schema in your MySQL local database and add info here. REMOVE BEFORE COMMIT!!!
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:JetEastZook0113!#@localhost:3306/user_accounts_schema' # create user_account_schema in your MySQL local database and add info here. REMOVE BEFORE COMMIT!!!
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 db = SQLAlchemy(app)
 
@@ -19,7 +19,7 @@ def login():
 
 @app.get('/')
 def index(): 
-    return render_template('ZeBRA-Project/templates/index.html')
+    return render_template('index.html')
 
 @app.get('/users/new')
 def create_account_form():
@@ -58,7 +58,7 @@ def create_account():
 
         try:
             db.session.commit()
-            return redirect(url_for('ZeBRA-Project/templates/index.html'))  # Redirect to login page after successful registration
+            return redirect(url_for('index.html'))  # Redirect to login page after successful registration
         except IntegrityError:
             db.session.rollback()
             return render_template('create_account_form.html', error="Email already exists. Please choose another.")
