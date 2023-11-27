@@ -2,7 +2,7 @@
 
 {% block title %}UniConX | Login{% endblock %}
 
-{% block body %}
+{% block main %}
 <div class="form-element">
     <form action="" method="post">
         <h1><strong>LOGIN</strong></h1>
@@ -10,8 +10,9 @@
         <input id="username-login" type="text" name="username-login" required placeholder="youremail@email.com"/><br>
         <label for="password-login">Password:</label>
         <input id="password-login" type="password" name="password-login" required placeholder="********"/><br>
-        <input type="submit" value="Login"  class="submit" name="submit">
-        <p>Don't have an account? <a href="{{ url_for('create_account') }}">Sign Up</a></p>
+        <br>
+        <input type="submit" value="LOGIN" class="submit" name="submit">
+        <p class="form">Don't have an account? <a href="{{ url_for('create_account_form') }}">Sign Up</a></p>
     </form>
 </div>
 {% endblock %}

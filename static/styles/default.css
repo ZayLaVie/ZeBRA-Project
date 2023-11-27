@@ -1,48 +1,137 @@
-body, h1, h2, h3, p, label{
-    margin: 0;
-    padding: 0;
-} 
-
-body{
-    font-family: 'Verdana', sans-serif;
-    background-color: #d6d5d5;
+body {
+    background: #f2f3f5;
 }
 
-nav {
-    display: inline-block;
-}
-
-header {
-    background: rgb(6, 73, 6);
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
+#header {
+    background: #BEDCFE;
+    color: whitesmoke;
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 0 auto;
     padding: 10px;
-    margin: 0 10px;
-    display: inline-block;
+    font-size: 70px;
 }
 
-.form-element {
-    max-width: 400px;
-    margin: 50px auto;
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    font-size: 24px;
+#header-links, #header-nav {
+    text-decoration: none;
+    color: #6A8D73;
     text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    background: #e4ffe1;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.about-img-container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.contact-img-container {
+    position: relative;
+    text-align: center;
+}
+
+.home-img-container {
+    position: relative;
+    text-align: center;
+}
+
+.about-us {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-weight: bold;
+    font-size: 70px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    padding: 20px;
+    width: 60%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.contact-us {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-weight: bold;
+    font-size: 70px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    padding: 20px;
+    width: 60%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+p.home-message {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    padding: 20px;
+    width: 80%; 
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+p.form {
+    text-align: center;
+}
+
+.contact-form {
+    width: 900px;
+    margin: 0 auto;
+    padding: 30px 100px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.sub-headers {
+    color: #41602B; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: underline dotted #cbc2a3;
+    font-weight: bold;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.about-para {
+    color: #3a414a;
+    font-weight: 200;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.about-bullet {
+    color: #3a414a;
+    font-weight: 200;
+    padding-left: 8%;
+    padding-right: 5%;
+}
+
+.about-quote {
+    color: #3a414a;
+    font-weight: 200;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*-ms-transform: translate(-50%, -50%);*/
 }
 
 label {
     display: block;
-    margin-bottom: 4px;
+    margin-top: 7px;
     color: #222;
 }
 
@@ -66,17 +155,80 @@ input[type="submit"]:hover {
     background-color: #222222;
 }
 
-p{
+.footer {
+    background-color: #41602B;
+    align-items: center;
+}
+
+.contact-box {
+    max-width: 100%;
+    width: 600px;
+    height: auto;
+    text-align: left;
+    border: 5px solid transparent;
+    padding: 10px;
+    margin: 0 auto;
+    color:black;
+    font-weight:normal;
+    font-size: medium;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.radio-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+h1 {
     text-align: center;
-    margin-top: 10px;
-    color: #555;
+    margin: 0 auto;
+    padding-top: 30px;
 }
 
-a{
-    color: #007bff;
-    text-decoration: none;
+.card {
+    flex: 0 0 auto;
+    width: 10px;
+    margin: 10px;
 }
 
-a:hover{
-    text-decoration: underline;
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 25px;
 }
+
+.form-element {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+img.login-image:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+/* Start Tables List */
+table {
+    text-align: left;
+    margin: 0 auto;
+    border: 1px solid black;
+    padding: 60px;
+}
+
+th, td {
+    width: 200px;
+    border: 1px solid black;
+}
+
+.table-container {
+    padding: 30px 0px;
+}
+/* End Tables List */

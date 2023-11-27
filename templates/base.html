@@ -1,25 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles/default.css') }}">
-  <title>{% block title %}{% endblock %}</title>
-</head>
+    <meta charset="UTF-8">
+    <title>UniConX - Home Page</title>
+    <link rel="stylesheet" href="../static/styles/default.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>{% block title %}{% endblock %}</title>
+  </head>
     <body>
-        <!-- create header here -->
         <header>
-          <nav>
-              <a href="{{ url_for('index') }}">Home</a>
-              <a href="#">About</a>
-              <a href="{{ url_for('list_users') }}">List Users</a>
-              <a href="{{ url_for('login') }}">Login</a>
-          </nav>
+            <nav class="navbar navbar-expand-xl " style="background-color: #41602B;">
+                <a class="navbar-brand"  style="color: white;font-weight: bolder; " href="{{ url_for('index') }}">UniConX</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>             
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active rounded-pill" style="margin-left: 15px; ">
+                      <a class="nav-link" href="{{ url_for('index') }}" style="color: #cbc2a3; font-weight: bolder;"> Home <span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item active" style=" margin-left: 15px;">
+                        <a class="nav-link" href="{{ url_for('about_uniconx') }}" style="color: #cbc2a3; font-weight: bolder;">About Us <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active" style="margin-left: 15px;">
+                      <a class="nav-link" href="{{ url_for('contact_uniconx') }}" style="color: #cbc2a3; font-weight: bolder;">Contact Us <span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item active" style="margin-left: 15px;">
+                      <a class="nav-link" href="{{ url_for('login') }}" style="color: #cbc2a3; font-weight: bolder;">Login <span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item active" style="margin-left: 15px;">
+                      <a class="nav-link" href="{{ url_for('registered_users') }}" style="color: #cbc2a3; font-weight: bolder;">Registered Users <span class="sr-only"></span></a>
+                    </li>
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <a href="{{ url_for('login') }}"><img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg" width="40" height="40" class="rounded-circle login-image"></a>
+                  </form>
+                </div>
+            </nav>
         </header>
-        {% block body %}{% endblock %}
-        <!-- create footer here -->
-        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    </body>
+        <main>
+          {% block main %}{% endblock %}
+        </main>
+        <footer class=" text-center text-white footer">
+          <!-- Grid container -->
+          <div class="container p-4 pb-0 ">
+            <!-- Section: Social media -->
+            <section class="">
+              <!-- Twitter -->
+              <img src="https://cdn.pixabay.com/photo/2017/11/10/05/05/twitter-2935414_1280.png"width="40" height="40" class="rounded-circle">
+              <!-- Instagram -->
+              <img src="https://static.vecteezy.com/system/resources/previews/022/257/067/non_2x/icon-media-social-instagram-free-vector.jpg" width="40" height="40" class="rounded-circle">
+              <!-- Linkedin -->
+              <img src="https://thumbs.dreamstime.com/b/linkedin-icon-logo-beautiful-meticulously-designed-223937618.jpg"width="40" height="40" class="rounded-circle">
+              <!-- Github -->
+              <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"width="40" height="40" class="rounded-circle">
+            </section>
+            <!-- Section: Social media -->
+          </div>
+          <!-- Grid container -->       
+          <!-- Copyright -->
+          <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            <p>Designed by ZeBRA Design &copy 2023</p>
+          </div>
+          <!-- Copyright -->
+        </footer>
+      <!--Bootstrap Java script-->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
 </html>
