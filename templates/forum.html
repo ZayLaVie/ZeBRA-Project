@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/styles/forum.css">
+    <title>Discussion Forum</title>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Discussion Forum</h1>
+        <div id="posts">
+            <!-- Posts will be dynamically added here -->
+        </div>
+        <div id="new-post">
+            <h2>Create a New Post</h2>
+            <input type="text" id="post-title" placeholder="Title">
+            <textarea id="post-content" placeholder="Content"></textarea>
+            <button id="submit-post">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code for handling forum functionality
+        const postsContainer = document.getElementById('posts');
+        const postTitleInput = document.getElementById('post-title');
+        const postContentInput = document.getElementById('post-content');
+        const submitButton = document.getElementById('submit-post');
+
+        submitButton.addEventListener('click', () => {
+            const title = postTitleInput.value;
+            const content = postContentInput.value;
+
+            if (title && content) {
+                const postElement = document.createElement('div');
+                postElement.classList.add('post');
+                postElement.innerHTML = `
+                    <h3 class="post-title">${title}</h3>
+                    <p>${content}</p>
+                `;
+                postsContainer.appendChild(postElement);
+
+                // Clear input fields
+                postTitleInput.value = '';
+                postContentInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
