@@ -1,14 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for, abort
+from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from sqlalchemy.exc import IntegrityError
 from src.models import user, db
-from src.repositories.user_repository import user_repository_singleton
 
 app = Flask(__name__)
 
 # Configure database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://*************************************' # create user_account_schema in your MySQL local database and add info here. REMOVE BEFORE COMMIT!!!
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:nemo8739@localhost:3306/user_accounts_schema' # create user_account_schema in your MySQL local database and add info here. REMOVE BEFORE COMMIT!!!
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
-db.init_app(app)
+#db = SQLAlchemy(app)
 
 bcrypt = Bcrypt(app)
 
@@ -18,26 +19,17 @@ def login():
 
 @app.get('/')
 def index(): 
-    return render_template('index.html')
-
-@app.get('/about-uniconx')
-def about_uniconx(): 
-    return render_template('about-uniconx.html')
-
-@app.get('/contact-uniconx')
-def contact_uniconx(): 
-    return render_template('contact-uniconx.html')
+    return render_template('ZeBRA-Project/templates/index.html')
 
 @app.get('/users/new')
 def create_account_form():
-    return render_template('create_account_form.html', create_account_active=True)
+    return render_template('create_account_form.html')
 
-@app.get('/registered_users')
-def registered_users():
-    all_users = user_repository_singleton.get_all_users()
-    return render_template('registered_users.html', users=all_users)
+@app.get('/list_users')
+def list_users():
+    return render_template('list_users.html')
 
-@app.post('/users')
+@app.get('/users')
 def create_user():
     first_name = request.form.get('first_name', '')
     last_name = request.form.get('last_name', '')
@@ -46,17 +38,32 @@ def create_user():
 
     if first_name == '' or last_name == '' or email == '' or password == '':
         abort(400)
-
     created_user = user_repository_singleton.create_user(first_name, last_name, email, password)
+    return redirect(f'/users/{created_user.user_id}')
 
-    if created_user:
-        return redirect(f'/users/{created_user.user_id}')
-    else:
-        return {'error': 'User with the same email already exists'}, 400
+@app.route('/create_account_form', methods=['GET', 'POST'])
+def create_account():
+    if request.method == 'POST':
+        first_name = request.form['first-name']
+        last_name = request.form['last-name']
+        email = request.form['email']
+        password = request.form['password']
 
-@app.route('/create_account_redirect', methods=['POST'])
-def create_account_redirect():
-    return redirect(url_for('create_account_form'))
+        # Hash the password
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+
+        # Insert user into the database
+        new_user = user(first_name=first_name, last_name=last_name, email=email, password=hashed_password)
+        db.session.add(new_user)
+
+        try:
+            db.session.commit()
+            return redirect(url_for('ZeBRA-Project/templates/index.html'))  # Redirect to login page after successful registration
+        except IntegrityError:
+            db.session.rollback()
+            return render_template('create_account_form.html', error="Email already exists. Please choose another.")
+
+    return render_template('create_account_form.html')
 
 if __name__ == '__main__':
     db.create_all()
