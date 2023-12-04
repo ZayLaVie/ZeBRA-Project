@@ -23,6 +23,11 @@
                 <td>{{ user.last_name }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.password }}</td>
+                <td>
+                    <form method="post" action="/delete_user/{{ user.user_id }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
