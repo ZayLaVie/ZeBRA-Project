@@ -20,8 +20,8 @@ app.secret_key = ''
 
 <<<<<<< Updated upstream
 # Configure database
-<<<<<<< Updated upstream
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:JetEastZook0113!#@localhost:3306/user_accounts_schema' # create user_account_schema in your MySQL local database and add info here. REMOVE BEFORE COMMIT!!!
+<<<<<<< Updated upstream
 =======
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://*******************************************' # create user_account_schema in your MySQL local database and add info here. REMOVE BEFORE COMMIT!!!
 >>>>>>> Stashed changes
@@ -33,6 +33,8 @@ login_manager.login_view = 'login'
 # Configure Database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://' 
 # Create 'user_account_schema' in your MySQL local database and add info here. REMOVE BEFORE COMMIT!!!
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 db.init_app(app)
@@ -81,7 +83,10 @@ def index():
     return render_template('index.html')
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
 @app.get('/about-uniconx')
 def about_uniconx(): 
@@ -90,6 +95,9 @@ def about_uniconx():
 @app.get('/contact-uniconx')
 def contact_uniconx(): 
     return render_template('contact-uniconx.html')
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -184,7 +192,6 @@ def create_user():
     else:
         return {'error': 'User with the same email already exists'}, 400
 
-<<<<<<< Updated upstream
         # Hash the password
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
@@ -200,6 +207,7 @@ def create_user():
             return render_template('create_account_form.html', error="Email already exists. Please choose another.")
 
     return render_template('create_account_form.html')
+<<<<<<< Updated upstream
 =======
 @app.route('/create_account_redirect', methods=['POST'])
 def create_account_redirect():
@@ -215,6 +223,8 @@ def create_account_redirect():
 @app.route('/create_account_redirect', methods=['POST'])
 def create_account_redirect():
     return redirect(url_for('create_account_form'))
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 if __name__ == '__main__':
