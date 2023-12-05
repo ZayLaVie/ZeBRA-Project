@@ -9,35 +9,44 @@
   </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-xl " style="background-color: #41602B;">
-                <a class="navbar-brand"  style="color: white;font-weight: bolder; " href="{{ url_for('index') }}">UniConX</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>             
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active rounded-pill" style="margin-left: 15px; ">
-                      <a class="nav-link" href="{{ url_for('index') }}" style="color: #cbc2a3; font-weight: bolder;"> Home <span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item active" style=" margin-left: 15px;">
-                        <a class="nav-link" href="{{ url_for('about_uniconx') }}" style="color: #cbc2a3; font-weight: bolder;">About Us <span class="sr-only">(current)</span></a>
-                    </li>
+          <nav class="navbar navbar-expand-xl " style="background-color: #41602B;">
+            <a class="navbar-brand"  style="color: white;font-weight: bolder; " href="{{ url_for('index') }}">UniConX</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>             
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active rounded-pill" style="margin-left: 15px; ">
+                  <a class="nav-link" href="{{ url_for('index') }}" style="color: #cbc2a3; font-weight: bolder;"> Home <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active" style=" margin-left: 15px;">
+                    <a class="nav-link" href="{{ url_for('about_uniconx') }}" style="color: #cbc2a3; font-weight: bolder;">About Us <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active" style="margin-left: 15px;">
+                  <a class="nav-link" href="{{ url_for('contact_uniconx') }}" style="color: #cbc2a3; font-weight: bolder;">Contact Us <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active" style="margin-left: 15px;">
+                  <a class="nav-link" href="{{ url_for('registered_users') }}" style="color: #cbc2a3; font-weight: bolder;">Registered Users <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active" style="margin-left: 15px;">
+                  <a class="nav-link" href="{{ url_for('forum') }}" style="color: #cbc2a3; font-weight: bolder;">Forum <span class="sr-only"></span></a>
+                </li>
+                {% if current_user.is_authenticated %}
                     <li class="nav-item active" style="margin-left: 15px;">
-                      <a class="nav-link" href="{{ url_for('contact_uniconx') }}" style="color: #cbc2a3; font-weight: bolder;">Contact Us <span class="sr-only"></span></a>
+                        <a class="nav-link" href="{{ url_for('logout') }}" style="color: #cbc2a3; font-weight: bolder;">Logout (Authenticated) <span class="sr-only"></span></a>
                     </li>
+                {% else %}
                     <li class="nav-item active" style="margin-left: 15px;">
-                      <a class="nav-link" href="{{ url_for('login') }}" style="color: #cbc2a3; font-weight: bolder;">Login <span class="sr-only"></span></a>
+                        <a class="nav-link" href="{{ url_for('login') }}" style="color: #cbc2a3; font-weight: bolder;">Login <span class="sr-only"></span></a>
                     </li>
-                    <li class="nav-item active" style="margin-left: 15px;">
-                      <a class="nav-link" href="{{ url_for('registered_users') }}" style="color: #cbc2a3; font-weight: bolder;">Registered Users <span class="sr-only"></span></a>
-                    </li>
-                  </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <a href="{{ url_for('login') }}"><img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg" width="40" height="40" class="rounded-circle login-image"></a>
-                  </form>
-                </div>
-            </nav>
+                {% endif %}
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <a href="{{ url_for('login') }}"><img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg" width="40" height="40" class="rounded-circle login-image"></a>
+              </form>
+            </div>
+          </nav>
         </header>
         <main>
           {% block main %}{% endblock %}
