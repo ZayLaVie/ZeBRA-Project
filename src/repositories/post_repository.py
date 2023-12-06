@@ -1,4 +1,4 @@
-from src.models import Post, db
+from src.models import db, Post
 
 class PostRepository:
 
@@ -15,21 +15,4 @@ class PostRepository:
         db.session.commit()
         return new_post
 
-# Usage Example:
-
-# Assume you have a Flask app and db initialized:
-# from flask import Flask
-# from flask_sqlalchemy import SQLAlchemy
-
-# app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'your_database_uri_here'
-# db = SQLAlchemy(app)
-
-# Create an instance of the repository and pass the db session
 post_repository_singleton = PostRepository()
-
-# Example of using the repository
-# post_repository.create_post(user_id=1, title='My Post', post_date_time=datetime.now(), content='Content of the post')
-
-# After performing operations, you can commit changes when needed
-# db.session.commit()

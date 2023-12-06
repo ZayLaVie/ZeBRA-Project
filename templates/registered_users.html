@@ -3,6 +3,8 @@
 {% block title %}UniConX | Registered Users{% endblock %}
 
 {% block main %}
+
+{% if current_user.is_authenticated %}
 <h1>Registered Users</h1>
 <div class="table-container">
     <table>
@@ -33,4 +35,6 @@
         </tbody>
     </table>
 </div>
+{% endif %}
+
 {% endblock %}

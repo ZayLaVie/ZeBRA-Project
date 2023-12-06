@@ -25,11 +25,17 @@
                 <li class="nav-item active" style="margin-left: 15px;">
                   <a class="nav-link" href="{{ url_for('contact_uniconx') }}" style="color: #cbc2a3; font-weight: bolder;">Contact Us <span class="sr-only"></span></a>
                 </li>
+                <!--<li class="nav-item active" style="margin-left: 15px;">
+                  <a class="nav-link" href="{{ url_for('forum_2') }}" style="color: #cbc2a3; font-weight: bolder;">Forum 2<span class="sr-only"></span></a>
+                </li>-->
                 <li class="nav-item active" style="margin-left: 15px;">
                   <a class="nav-link" href="{{ url_for('registered_users') }}" style="color: #cbc2a3; font-weight: bolder;">Registered Users <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active" style="margin-left: 15px;">
                   <a class="nav-link" href="{{ url_for('forum') }}" style="color: #cbc2a3; font-weight: bolder;">Forum <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active" style="margin-left: 15px;">
+                  <a class="nav-link" href="{{ url_for('tech_portfolio') }}" style="color: #cbc2a3; font-weight: bolder;">Tech Portfolio<span class="sr-only"></span></a>
                 </li>
                 {% if current_user.is_authenticated %}
                     <li class="nav-item active" style="margin-left: 15px;">

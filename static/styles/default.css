@@ -232,3 +232,28 @@ th, td {
     padding: 30px 0px;
 }
 /* End Tables List */
+
+h1.error-heading {
+    font-weight: bold;
+    font-size: 70px;
+    color: red;
+    padding-top: 30px;
+    margin: 0 auto;
+}
+
+p.error-message {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.error-return-container {
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 55%;
+}
+
+a.access-denied-home {
+    margin: 0 auto;
+}

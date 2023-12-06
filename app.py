@@ -1,40 +1,16 @@
-<<<<<<< Updated upstream
-from flask import Flask, render_template, request, redirect, url_for, abort
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
-from sqlalchemy.exc import IntegrityError
-from src.models import user, db
-<<<<<<< HEAD
-=======
-from src.repositories.user_repository import user_repository_singleton
-=======
 from flask import Flask, render_template, request, redirect, url_for, abort, flash, session
 from flask_login import LoginManager, login_required, current_user, login_user, logout_user
-from src.models import User, db, Post
+from src.models import User, Post, db
 from src.repositories.user_repository import user_repository_singleton
 from src.repositories.post_repository import post_repository_singleton
 from datetime import datetime
 from functools import wraps
->>>>>>> Stashed changes
->>>>>>> main-backup
 
 app = Flask(__name__)
 # Secret key for session security purposes.
 # Obtain secret key from @asamsomb
 app.secret_key = ''
 
-<<<<<<< HEAD
-# Configure database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:nemo8739@localhost:3306/user_accounts_schema' # create user_account_schema in your MySQL local database and add info here. REMOVE BEFORE COMMIT!!!
-=======
-<<<<<<< Updated upstream
-# Configure database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:JetEastZook0113!#@localhost:3306/user_accounts_schema' # create user_account_schema in your MySQL local database and add info here. REMOVE BEFORE COMMIT!!!
-<<<<<<< Updated upstream
-=======
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://*******************************************' # create user_account_schema in your MySQL local database and add info here. REMOVE BEFORE COMMIT!!!
->>>>>>> Stashed changes
-=======
 login_manager = LoginManager(app)
 # Sets 'login.html' for unauthorized users (not registered)
 login_manager.login_view = 'login'
@@ -42,12 +18,8 @@ login_manager.login_view = 'login'
 # Configure Database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://' 
 # Create 'user_account_schema' in your MySQL local database and add info here. REMOVE BEFORE COMMIT!!!
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
->>>>>>> main-backup
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
-#db = SQLAlchemy(app)
+db.init_app(app)
 
 def login_required(view_func):
     @wraps(view_func)
@@ -90,31 +62,12 @@ def logout():
 # route to Home page
 @app.get('/')
 def index(): 
-<<<<<<< HEAD
-    return render_template('ZeBRA-Project/templates/index.html')
-=======
     return render_template('index.html')
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
 
-@app.get('/about-uniconx')
-def about_uniconx(): 
-    return render_template('about-uniconx.html')
-
-@app.get('/contact-uniconx')
-def contact_uniconx(): 
-    return render_template('contact-uniconx.html')
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
->>>>>>> main-backup
+# route to Rida forum page
+@app.get('/forum_2')
+def forum_2(): 
+    return render_template('forum_2.html')
 
 # Route to About Us page
 @app.get('/about-uniconx')
@@ -126,26 +79,21 @@ def about_uniconx():
 def contact_uniconx(): 
     return render_template('contact-uniconx.html')
 
+# Route to Contact Us page
+@app.get('/tech_portfolio')
+@login_required
+def tech_portfolio(): 
+    return render_template('techPortfolio.html')
+
 # Route to Create New Account form
 @app.get('/users/new')
 def create_account_form():
-    return render_template('create_account_form.html')
+    return render_template('create_account_form.html', create_account_active=True)
 
-<<<<<<< HEAD
-@app.get('/list_users')
-def list_users():
-    return render_template('list_users.html')
+@app.route('/unauthorized_access')
+def unauthorized_access():
+    return render_template('permission-denied.html')
 
-@app.get('/users')
-=======
-<<<<<<< Updated upstream
-@app.get('/registered_users')
-def registered_users():
-    all_users = user_repository_singleton.get_all_users()
-    return render_template('registered_users.html', users=all_users)
-
-@app.post('/users')
-=======
 # For dev purposes---routes to deletion of a user/account
 @app.route('/delete_user/<int:user_id>', methods=['POST'])
 def delete_user(user_id):
@@ -158,24 +106,49 @@ def delete_user(user_id):
     else:
         # Handle case where the user does not exist
         return "User not found"
+    
+# For dev purposes---routes to deletion of a post
+@app.route('/delete_post/<int:post_id>', methods=['POST'])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get(post_id)
+
+    if not post:
+        return "Post not found"
+    
+    if current_user.user_id == 32 or current_user.user_id == post.user_id:
+        db.session.delete(post)
+        db.session.commit()
+        return redirect(url_for('forum'))
+    else:
+        return redirect(url_for('unauthorized_access'))
 
 # For dev purposes---
 # Displays all registered users while requiring users to be logged in.
 # Users not registered cannot view registered users.
+
+# admin@admin.com
+# Admin2331$AdmiN#775389%
 @app.get('/registered_users')
 @login_required
 def registered_users():
+    if current_user.user_id != 32:
+        return redirect(url_for('unauthorized_access'))
+
     all_users = user_repository_singleton.get_all_users()
     return render_template('registered_users.html', users=all_users)
 
 # Requires users to be logged in to post on and view forums.
 @app.route('/forum', methods=['GET', 'POST'])
-@login_required
 def forum(): 
     print("Current User:", current_user)  # Debug Statement: Shows active user and activity.
     print("Session User ID:", session.get('user_id')) # Debug Statement: Shows active user and activity.
 
     if request.method == 'POST':
+        if not current_user.is_authenticated:
+            flash('Please Log In or Create an Account to post.', 'danger')
+            return redirect(url_for('login'))
+
         title = request.form.get('title')
         content = request.form.get('content')
 
@@ -194,8 +167,6 @@ def forum():
 
 # Creates new user
 @app.route('/users', methods=['POST'])
->>>>>>> Stashed changes
->>>>>>> main-backup
 def create_user():
     first_name = request.form.get('first_name', '')
     last_name = request.form.get('last_name', '')
@@ -204,50 +175,10 @@ def create_user():
 
     if first_name == '' or last_name == '' or email == '' or password == '':
         abort(400)
+
     created_user = user_repository_singleton.create_user(first_name, last_name, email, password)
-    return redirect(f'/users/{created_user.user_id}')
 
-<<<<<<< HEAD
-@app.route('/create_account_form', methods=['GET', 'POST'])
-def create_account():
-    if request.method == 'POST':
-        first_name = request.form['first-name']
-        last_name = request.form['last-name']
-        email = request.form['email']
-        password = request.form['password']
-=======
     if created_user:
-<<<<<<< Updated upstream
-        return redirect(f'/users/{created_user.user_id}')
-        return {'message': 'User created successfully'}
-    else:
-        return {'error': 'User with the same email already exists'}, 400
->>>>>>> main-backup
-
-        # Hash the password
-        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-
-        # Insert user into the database
-        new_user = user(first_name=first_name, last_name=last_name, email=email, password=hashed_password)
-        db.session.add(new_user)
-
-        try:
-            db.session.commit()
-            return redirect(url_for('ZeBRA-Project/templates/index.html'))  # Redirect to login page after successful registration
-        except IntegrityError:
-            db.session.rollback()
-            return render_template('create_account_form.html', error="Email already exists. Please choose another.")
-
-    return render_template('create_account_form.html')
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
-@app.route('/create_account_redirect', methods=['POST'])
-def create_account_redirect():
-    return redirect(url_for('create_account_form'))
->>>>>>> Stashed changes
-=======
         flash('Account Created Successfully!', 'success')
         return redirect(url_for('forum'))
     else:
@@ -257,11 +188,7 @@ def create_account_redirect():
 @app.route('/create_account_redirect', methods=['POST'])
 def create_account_redirect():
     return redirect(url_for('create_account_form'))
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
->>>>>>> main-backup
 
 if __name__ == '__main__':
-    db.create_all()
+    db.create_all(bind='__all__', tables=[User.__table__, Post.__table__])
     app.run(debug=True)

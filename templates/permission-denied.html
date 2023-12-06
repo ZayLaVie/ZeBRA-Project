@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}UniConX | Access Denied{% endblock %}
+
+{% block main %}
+<h1 class="error-heading">ACCESS DENIED</h1>
+<p class="error-message">MESSAGE: Unauthorized access. You do not have authorized permissions to visit this page.</p>
+<div class="error-return-container">
+    <a href="{{ url_for('index') }}" class="access-denied-home">Return to Home Page</a>
+</div>
+{% endblock %}
