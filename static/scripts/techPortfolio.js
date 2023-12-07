@@ -1,25 +1,25 @@
 const product = [
     {
         id: 0,
-        image: 'image/gg-1.jpg',
+        image: 'https://blog.digitalcook.fr/wp-content/uploads/2021/04/Landing-Page.png',
         title: 'Builidng a Landing page',
         price: 1,
     },
     {
         id: 1,
-        image: 'image/hh-2.jpg',
+        image: 'https://tse1.mm.bing.net/th?id=OIP.sDkW6w1i7ET_BaR_UMonHQHaI3&pid=Api&P=0&h=220',
         title: 'Build your own web server',
         price: 1,
     },
     {
         id: 2,
-        image: 'image/ee-3.jpg',
+        image: 'https://www.pinclipart.com/picdir/big/117-1176996_checklist-clipart.png',
         title: 'To Do App',
         price: 1,
     },
     {
         id: 3,
-        image: 'image/aa-1.jpg',
+        image: 'https://www.zeumic.com.au/wp-content/uploads/2018/04/zeumic-e-commerce-cycle-st-kilda-image.jpg',
         title: 'E-commerce Website',
         price: 1,
     }

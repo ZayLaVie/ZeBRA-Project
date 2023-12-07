@@ -93,12 +93,13 @@ submitButton.addEventListener('click', () => {
     } else {
         alert('Please fill in all fields.');
     }
+    
 });
-
 function getCurrentDateTime() {
     const now = new Date();
     const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
     return now.toLocaleDateString('en-US', options);
-}
+    }
+
 </script>
 {% endblock %}

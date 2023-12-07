@@ -1,5 +1,4 @@
 USE user_accounts_schema;
-
 -- Create a table to store user information
 CREATE TABLE user (
     user_id INT AUTO_INCREMENT PRIMARY KEY,

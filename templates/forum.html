@@ -10,19 +10,19 @@
         <h2>Posted Discussions</h2>
         <ul>
             {% for post, email in posts %}
-            <li>
-                <strong>{{ post.title }}</strong> by {{ email }}<br>
-                {{ post.post_date_time }}<br>
-                {{ post.content }}
-
-                {% if current_user.is_authenticated %}
-                <form method="post" action="{{ url_for('delete_post', post_id=post.post_id) }}">
-                    <button type="submit">Delete</button>
-                </form>
-                {% endif %}
-            </li>
-            <hr>
-            {% endfor %}
+                <li>
+                    <div class="discuss-box">
+                        <strong>{{ post.title }}</strong> by <u>{{ email }}</u><br>
+                        {{ post.post_date_time }}<br>
+                        {{ post.content }}<br>
+                    </div>
+                    {% if current_user.is_authenticated %}
+                    <form method="post" action="{{ url_for('delete_post', post_id=post.post_id) }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                    {% endif %}
+                </li>
+                {% endfor %}
         </ul>
     </div>
     {% if current_user.is_authenticated %}
@@ -45,4 +45,5 @@
     <button onclick="window.location.href=`{{ url_for('create_account_form') }}`">Create an Account</button>
     {% endif %}
 </div>
+<br>
 {% endblock %}
