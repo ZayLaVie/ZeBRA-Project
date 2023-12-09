@@ -11,7 +11,7 @@
     <div id="new-post">
         <h2>Create a New Post</h2>
         <input type="text" id="post-title" placeholder="Title">
-        <input type="text" id="post-username" placeholder="Username"> <!-- Add this input field -->
+        <input type="text" id="post-username" placeholder="Username">
         <textarea id="post-content" placeholder="Content"></textarea>
         <button id="submit-post">Submit</button>
     </div>
@@ -93,13 +93,12 @@ submitButton.addEventListener('click', () => {
     } else {
         alert('Please fill in all fields.');
     }
-    
 });
+
 function getCurrentDateTime() {
     const now = new Date();
     const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
     return now.toLocaleDateString('en-US', options);
-    }
-
+}
 </script>
 {% endblock %}

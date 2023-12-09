@@ -1,3 +1,4 @@
+// Array for product of list items id, image, title, and price.
 const product = [
     {
         id: 0,
@@ -24,12 +25,19 @@ const product = [
         price: 1,
     }
 ];
-const categories = [...new Set(product.map((item)=>
-    {return item}))]
-    let i=0;
+
+// Extracts item and returns item
+const categories = [
+    ...new Set(product.map((item)=>{return item}))
+]
+
+// Counter variable
+let i=0;
+
+// Obtains 'root' element and creates inner HTML element using variables 'image' and 'title'
 document.getElementById('root').innerHTML = categories.map((item)=>
 {
-    var {image, title, price} = item;
+    var {image, title} = item;
     return(
         `<div class='box'>
             <div class='img-box'>
@@ -44,27 +52,41 @@ document.getElementById('root').innerHTML = categories.map((item)=>
     )
 }).join('')
 
+// Array to store items in variable 'cart'
 var cart =[];
 
+// Adds item to cart
 function addtocart(a){
     cart.push({...categories[a]});
     displaycart();
 }
+
+// Removes an item from cart
 function delElement(a){
     cart.splice(a, 1);
     displaycart();
 }
 
+// Displays items in 'cart'
 function displaycart(){
     let j = 0, total=0;
+
+    // Updates count of items in cart
     document.getElementById("count").innerHTML=cart.length;
+
+    // Handles empty cart and cart with items
     if(cart.length==0){
+
+        // Displays message if cart is empty
         document.getElementById('cartItem').innerHTML = "Group list empty";
         document.getElementById("total").innerHTML = " "+0+"";
-    }
-    else{
+    } else {
+
+        // Displays each item in cart available for deletion
         document.getElementById("cartItem").innerHTML = cart.map((items)=>
-        {
+        {   
+            // Assigns variables image, title, and price to 'items'
+            // Updates 'price'
             var {image, title, price} = items;
             total=total+price;
             document.getElementById("total").innerHTML = " "+total+"";
@@ -79,6 +101,4 @@ function displaycart(){
             );
         }).join('');
     }
-
-    
 }
