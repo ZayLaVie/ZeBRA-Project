@@ -81,6 +81,14 @@ Upperclassmen (juniors and seniors) who use this application can ask questions a
     $ pip install -r requirements.txt
 ```
 
+* **Prior to running the development server, please ensure that you've created a database from 'user_accounts.sql' with the following tables:**
+
+```shell
+    post
+    comment
+    user
+```
+
 * Run development server.
 
 ```shell
